@@ -1,17 +1,16 @@
 import React from "react";
 
-const FotoHeader = ({ usuarioImgSrc, usuarioNome, dataFoto }) => (
+const FotoHeader = ({ usuario, dataPostagem }) => (
   <header className="foto-header">
     <figure className="foto-usuario">
-      <img
-        src="https://instagram.fcgh10-1.fna.fbcdn.net/t51.2885-19/11199408_569104449895751_1837574990_a.jpg"
-        alt="foto do usuario"
-      />
+      <img src={usuario.urlFotoPerfil} alt="foto do usuario" />
       <figcaption className="foto-usuario">
-        <a href="#">alots</a>
+        <a href={`/usuario/${usuario.login}`}>{usuario.login}</a>
       </figcaption>
     </figure>
-    <time className="foto-data">03/10/2016 20:13</time>
+    <time className="foto-data">
+      {new Date(dataPostagem).toLocaleString("pt-BR")}
+    </time>
   </header>
 );
 

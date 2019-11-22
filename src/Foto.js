@@ -3,41 +3,98 @@ import React from "react";
 import FotoHeader from "./FotoHeader";
 import Comentario from "./Comentario";
 
+function BoxCurtidas({ curtidores }) {
+  let textoCurtida = "Ninguem curtiu ainda";
+  if (Array.isArray(curtidores)) {
+    if (curtidores.length === 1) {
+      textoCurtida = " curtiu";
+    } else if (curtidores.length > 1) {
+      textoCurtida = " curtiram";
+    }
+  } else {
+    curtidores = [];
+  }
+  return (
+    <div className="foto-info-likes">
+      {curtidores.map(c => (
+        <a key={c.id} href={`/usuario/${c.login}`}>
+          {c.login}
+        </a>
+      ))}{" "}
+      {textoCurtida}
+    </div>
+  );
+}
 class Foto extends React.Component {
+  state = {
+    curtiu: false,
+    curtidores: []
+  };
+  constructor(props) {
+    super(props);
+    this.comentarioRef = React.createRef();
+  }
+  curtirFoto = () => {
+    const { foto, onCurtir } = this.props;
+    onCurtir(foto.id);
+    this.setState(({ curtiu }) => ({ curtiu: !curtiu }));
+  };
+  fotoFoiCurtida = () => {
+    const usuarioLogado = { id: 1 };
+    const resultado = this.props.foto.Curtidores.find(
+      c => c.id == usuarioLogado.id
+    );
+    return resultado ? true : false;
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    const comentario = this.comentarioRef.current.value;
+    const {
+      foto: { id }
+    } = this.props;
+    this.props.onComentar(id, comentario);
+    this.comentarioRef.current.value = "";
+  };
+
   render() {
-    const { fotoSrc, usuario, comentarios, curtidas, fotoLegenda } = this.props;
+    const { foto } = this.props;
+    const comentarios =
+      foto.Comentarios && Array.isArray(foto.Comentarios)
+        ? foto.Comentarios
+        : [];
+    console.log({ comentarios });
     return (
-      <div className="foto">
-        <FotoHeader />
-        <img
-          alt="foto"
-          className="foto-src"
-          src="https://instagram.fcgh10-1.fna.fbcdn.net/t51.2885-15/e35/14482111_1635089460122802_8984023070045896704_n.jpg?ig_cache_key=MTM1MzEzNjM4NzAxMjIwODUyMw%3D%3D.2"
-        />
+      <article className="foto">
+        <FotoHeader usuario={foto.Usuario} dataPostagem={foto.updatedAt} />
+        <img alt="foto" className="foto-src" src={foto.url} />
 
         <div className="foto-info">
-          <div className="foto-info-likes">
-            <a href="#">alots_ssa</a>,<a href="#">rafael_rollo</a>
-            curtiram
-          </div>
+          <BoxCurtidas curtidores={foto.Curtidores} />
 
           <p className="foto-info-legenda">
-            <a className="foto-info-autor">autor </a>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, illo?
+            <span className="foto-info-autor">autor</span> {foto.comentario}
           </p>
 
           <ul className="foto-info-comentarios">
-            <Comentario />
+            {comentarios.map(comentario => (
+              <Comentario key={comentario.id} comentario={comentario} />
+            ))}
           </ul>
         </div>
 
         <section className="fotoAtualizacoes">
-          <a href="#" className="fotoAtualizacoes-like">
+          <span
+            className={`fotoAtualizacoes-like ${
+              this.fotoFoiCurtida() ? "liked" : ""
+            }`}
+            onClick={this.curtirFoto}
+          >
             Curtir
-          </a>
-          <form className="fotoAtualizacoes-form">
+          </span>
+          <form className="fotoAtualizacoes-form" onSubmit={this.handleSubmit}>
             <input
               type="text"
+              ref={this.comentarioRef}
               placeholder="Adicione um comentário..."
               className="fotoAtualizacoes-form-campo"
             />
@@ -48,7 +105,7 @@ class Foto extends React.Component {
             />
           </form>
         </section>
-      </div>
+      </article>
     );
   }
 }

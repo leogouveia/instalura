@@ -1,15 +1,13 @@
 import React from "react";
 import Header from "./Header";
-import Foto from "./Foto";
+import Fotos from "./Fotos";
 
 function App() {
   return (
     <div className="main">
       <Header />
 
-      <div className="fotos container">
-        <Foto />
-      </div>
+      <Fotos />
     </div>
   );
 }

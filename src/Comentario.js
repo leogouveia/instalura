@@ -1,10 +1,11 @@
 import React from "react";
 
-const Comentario = ({ usuarioId, usuarioNome, comentario }) => (
+const Comentario = ({ comentario }) => (
   <li className="comentario">
-    <a className="foto-info-autor">seguidor </a>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ad,
-    molestiae.
+    <a href={`/${comentario.Usuario.login}`} className="foto-info-autor">
+      {comentario.Usuario.login}
+    </a>{" "}
+    {comentario.texto}
   </li>
 );
 

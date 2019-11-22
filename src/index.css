@@ -1,8 +1,8 @@
 body {
   padding-top: 7vh;
   background: #fafafa;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 .container {
   padding: 0 10%;
@@ -28,9 +28,9 @@ body {
   background: url(assets/logo-instalura.svg) no-repeat left;
   height: 1em;
   padding-left: 1.5em;
-  padding-bottom: .2em;
+  padding-bottom: 0.2em;
   filter: hue-rotate(80deg);
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .header-logo:hover {
@@ -38,7 +38,7 @@ body {
 }
 
 .header-busca-campo {
-  padding: .5em;
+  padding: 0.5em;
   margin-left: 1em;
   background: #fafafa;
   border: 1px solid #dbdbdb;
@@ -60,7 +60,7 @@ body {
   color: #fff;
   min-width: 32px;
   height: 2.4em;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .header-busca-submit:hover {
@@ -68,7 +68,7 @@ body {
 }
 
 .header-nav {
-  list-style: none
+  list-style: none;
 }
 
 .header-nav-item a {
@@ -83,14 +83,12 @@ body {
 
 /*******/
 
-
 .foto {
   background-color: #fff;
   border: 1px solid #efefef;
   border-radius: 3px;
   max-width: 550px;
   margin: 2em auto;
-
 }
 
 .foto-header {
@@ -99,7 +97,6 @@ body {
   justify-content: space-between;
   padding: 0 2%;
 }
-
 
 .foto-usuario {
   display: flex;
@@ -118,7 +115,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-right: .7em;
+  margin-right: 0.7em;
 }
 
 .foto-data {
@@ -130,7 +127,6 @@ body {
 }
 
 /*****/
-
 
 .foto-info {
   padding: 1em;
@@ -154,7 +150,6 @@ body {
   font-weight: bold;
 }
 
-
 .foto-info-comentarios {
   list-style: none;
   padding: 0;
@@ -164,9 +159,8 @@ body {
 }
 
 .comentario {
-  margin-bottom: .6em;
+  margin-bottom: 0.6em;
 }
-
 
 /*****/
 
@@ -182,14 +176,18 @@ body {
   height: 44px;
   text-indent: -9999px;
   display: inline-block;
-  transition: .4s;
+  transition: 0.4s;
   margin-right: 1em;
 }
 
-.fotoAtualizacoes-like:hover {
-  background-image: url(assets/s2-check.png)
+.fotoAtualizacoes-like.liked {
+  background: url(assets/s2-check.png) no-repeat center center;
+  background-size: 32px 32px;
 }
 
+.fotoAtualizacoes-like:hover {
+  background-image: url(assets/s2-check.png);
+}
 
 .fotoAtualizacoes-form {
   display: flex;
