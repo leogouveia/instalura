@@ -18,34 +18,39 @@ function BoxCurtidas({ curtidores }) {
     <div className="foto-info-likes">
       {curtidores.map(c => (
         <a key={c.id} href={`/usuario/${c.login}`}>
-          {c.login}
+          {c.login}{" "}
         </a>
       ))}{" "}
       {textoCurtida}
     </div>
   );
 }
+
 class Foto extends React.Component {
   state = {
     curtiu: false,
     curtidores: []
   };
+
   constructor(props) {
     super(props);
     this.comentarioRef = React.createRef();
   }
+
   curtirFoto = () => {
     const { foto, onCurtir } = this.props;
     onCurtir(foto.id);
     this.setState(({ curtiu }) => ({ curtiu: !curtiu }));
   };
+
   fotoFoiCurtida = () => {
     const usuarioLogado = { id: 1 };
-    const resultado = this.props.foto.Curtidores.find(
+    const resultado = this.props.foto.curtidores.find(
       c => c.id == usuarioLogado.id
     );
     return resultado ? true : false;
   };
+
   handleSubmit = event => {
     event.preventDefault();
     const comentario = this.comentarioRef.current.value;
@@ -59,17 +64,17 @@ class Foto extends React.Component {
   render() {
     const { foto } = this.props;
     const comentarios =
-      foto.Comentarios && Array.isArray(foto.Comentarios)
-        ? foto.Comentarios
+      foto.comentarios && Array.isArray(foto.comentarios)
+        ? foto.comentarios
         : [];
     console.log({ comentarios });
     return (
       <article className="foto">
-        <FotoHeader usuario={foto.Usuario} dataPostagem={foto.updatedAt} />
+        <FotoHeader usuario={foto.usuario} dataPostagem={foto.updatedAt} />
         <img alt="foto" className="foto-src" src={foto.url} />
 
         <div className="foto-info">
-          <BoxCurtidas curtidores={foto.Curtidores} />
+          <BoxCurtidas curtidores={foto.curtidores} />
 
           <p className="foto-info-legenda">
             <span className="foto-info-autor">autor</span> {foto.comentario}

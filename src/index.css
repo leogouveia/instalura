@@ -1,13 +1,27 @@
 body {
-  padding-top: 7vh;
   background: #fafafa;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.main {
+  height: 100%;
+  padding-top: 7vh;
 }
 
 .container {
   padding: 0 10%;
 }
-
 /****/
 
 .header {
@@ -37,6 +51,10 @@ body {
   filter: hue-rotate(0);
 }
 
+a.header-logo-link {
+  color: black;
+  text-decoration: none;
+}
 .header-busca-campo {
   padding: 0.5em;
   margin-left: 1em;
@@ -68,17 +86,36 @@ body {
 }
 
 .header-nav {
+  display: flex;
+  align-items: center;
   list-style: none;
 }
 
-.header-nav-item a {
-  text-decoration: none;
-  color: #069;
-  font-size: 3em;
+.header-nav-item {
+  font-size: 1.6em;
 }
 
-.header-nav-item a:hover {
+.header-nav-item a,
+.header-nav-item button {
+  text-decoration: none;
+  color: #069;
+}
+
+.header-nav-item a:hover,
+.header-nav-item button:hover {
   color: #5ad4c9;
+}
+
+.botao-texto {
+  margin: 0;
+  padding: 0;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  display: inline;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
 }
 
 /*******/
@@ -206,4 +243,89 @@ body {
   background-color: #069;
   color: #fff;
   height: 2.4em;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  background-color: #faf9fa;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 350px;
+  padding: 40px 20px;
+}
+
+.login-header-box {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.login-header-logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
+.login-box p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+p.login-botao-logar {
+  margin-top: 20px;
+}
+
+.login-box label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.login-box input {
+  border: 1px solid #ccc;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.botao-azul {
+  background-color: #4094ef;
+  cursor: pointer;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-enter {
+  opacity: 0.01;
+}
+
+.timeline-enter.timeline-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.timeline-leave {
+  opacity: 1;
+}
+
+.timeline-leave.timeline-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

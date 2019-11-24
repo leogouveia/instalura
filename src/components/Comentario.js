@@ -2,8 +2,8 @@ import React from "react";
 
 const Comentario = ({ comentario }) => (
   <li className="comentario">
-    <a href={`/${comentario.Usuario.login}`} className="foto-info-autor">
-      {comentario.Usuario.login}
+    <a href={`/${comentario.usuario.login}`} className="foto-info-autor">
+      {comentario.usuario.login}
     </a>{" "}
     {comentario.texto}
   </li>
